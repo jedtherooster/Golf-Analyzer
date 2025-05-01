@@ -22,13 +22,19 @@ app.post('/upload', upload.array('files'), (req, res) => {
 
   req.files.forEach(file => {
     const shots = [];
+    let lineCount = 0; // Counter to track the line number
+
     fs.createReadStream(file.path)
       .pipe(csv())
       .on('data', (row) => {
-        if (row['Club'] && row['Carry Distance']) {
+        lineCount++;
+        if (lineCount <= 2) return; // Skip the first two lines
+
+        // Adjusted column names
+        if (row['Club Type'] && row['Carry Distance']) {
           const carry = parseFloat(row['Carry Distance']);
           if (!isNaN(carry)) {
-            shots.push({ club: row['Club'], carry_distance: carry });
+            shots.push({ club: row['Club Type'], carry_distance: carry });
           }
         }
       })
