@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carry Distance Stats</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Average Carry Distance by Club</h1>
+  <ul>
+    <% results.forEach(({ club, avg_carry }) => { %>
+      <li><strong><%= club %></strong>: <%= avg_carry.toFixed(2) %> m</li>
+    <% }) %>
+  </ul>
+  <p><a href="/">Upload More</a></p>
+
+  <hr>
+    <h2>Delete Data</h2>
+
+    <form action="/delete-all" method="post">
+    <button type="submit" onclick="return confirm('Delete ALL data?')">Delete All</button>
+    </form>
+
+    <form action="/delete-club" method="post">
+    <label for="club">Delete By Club:</label>
+    <input type="text" name="club" id="club" required>
+    <button type="submit">Delete Club</button>
+    </form>
+
+</body>
+</html>

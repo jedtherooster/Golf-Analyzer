@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Garmin CSVs</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Upload Your Garmin Range Sessions</h1>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="files" multiple required>
+    <button type="submit">Upload</button>
+  </form>
+  <p><a href="/results">View Results</a></p>
+</body>
+</html>
